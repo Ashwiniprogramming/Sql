@@ -1,0 +1,334 @@
+mysql> create table emp(
+    -> empno int,
+    -> ename varchar(50),
+    -> job varchar(50),
+    -> mgr int not null,
+    -> hiredate date not null,
+    -> sal decimal(10,2) not null,
+    -> comm decimal(10,2) not null,
+    -> deptno int,
+    -> primary key(empno)
+    -> );
+Query OK, 0 rows affected (2.83 sec)
+
+mysql> desc emp;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| empno    | int           | NO   | PRI | NULL    |       |
+| ename    | varchar(50)   | YES  |     | NULL    |       |
+| job      | varchar(50)   | YES  |     | NULL    |       |
+| mgr      | int           | NO   |     | NULL    |       |
+| hiredate | date          | NO   |     | NULL    |       |
+| sal      | decimal(10,2) | NO   |     | NULL    |       |
+| comm     | decimal(10,2) | NO   |     | NULL    |       |
+| deptno   | int           | YES  |     | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+8 rows in set (0.18 sec)
+
+
+
+mysql> create table dept(
+    -> deptno int,
+    -> dname varchar(50),
+    -> location varchar(50) not null,
+    -> primary key(deptno)
+    -> );
+Query OK, 0 rows affected (1.25 sec)
+
+mysql> desc dept;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| deptno   | int         | NO   | PRI | NULL    |       |
+| dname    | varchar(50) | YES  |     | NULL    |       |
+| location | varchar(50) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.34 sec)
+
+mysql> insert into emp(empno,ename,job,mgr,hiredate,sal,comm,deptno) values(7000,'jhon','manager',7698,2020-06-18,2500.00,null,50);
+ERROR 1292 (22007): Incorrect date value: '1996' for column 'hiredate' at row 1
+mysql> insert into emp(empno,ename,job,mgr,hiredate,sal,comm,deptno) values(7000,'jhon','manager',7698,'2020-06-18',2500.00,null,50);
+ERROR 1048 (23000): Column 'comm' cannot be null
+mysql> create table emp(
+    -> empno int,
+    -> ename varchar(50),
+    -> job varchar(50),
+    -> mgr int not null,
+    -> hiredate date not null,
+    -> sal decimal(10,2) not null,
+    -> comm decimal(10,2) ,
+    -> deptno int,
+    -> primary key(empno)
+    -> );
+ERROR 1050 (42S01): Table 'emp' already exists
+mysql> alter table emp
+    -> modify comm decimal(10,2);
+Query OK, 0 rows affected (3.42 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| empno    | int           | NO   | PRI | NULL    |       |
+| ename    | varchar(50)   | YES  |     | NULL    |       |
+| job      | varchar(50)   | YES  |     | NULL    |       |
+| mgr      | int           | NO   |     | NULL    |       |
+| hiredate | date          | NO   |     | NULL    |       |
+| sal      | decimal(10,2) | NO   |     | NULL    |       |
+| comm     | decimal(10,2) | YES  |     | NULL    |       |
+| deptno   | int           | YES  |     | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> insert into emp(empno,ename,job,mgr,hiredate,sal,comm,deptno) values(7000,'jhon','manager',7698,2020-06-18,2500.00,null,50);
+ERROR 1292 (22007): Incorrect date value: '1996' for column 'hiredate' at row 1
+mysql> insert into emp(empno,ename,job,mgr,hiredate,sal,comm,deptno) values(7000,'jhon','manager',7698,'2020-06-18',2500.00,null,50);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> insert into emp values(7002,'sham','manager',7698,'2020-06-18',2500.00,null,50);
+Query OK, 1 row affected (0.26 sec)
+
+mysql> insert into emp values(7004,'ravi','clerk',7693,'2000-12-12',500.00,null,50);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into emp values(7968,'smith','clerk',7902,'1993-12-13',800.00,0.00,20);
+Query OK, 1 row affected (0.39 sec)
+
+mysql> insert into emp values(7499,'allen','salesman',7698,'1998-06-15',1600.00,300.00,30);
+Query OK, 1 row affected (0.19 sec)
+
+mysql> insert into emp values(7521,'ward','salesman',7698,'1996-03-26',1250.00,500.00,30);
+Query OK, 1 row affected (0.48 sec)
+
+mysql> insert into emp values(7566,'jones','manager',7839,'1995-10-35',2975.00,null,20);
+ERROR 1292 (22007): Incorrect date value: '1995-10-35' for column 'hiredate' at row 1
+mysql> insert into emp values(7566,'jones','manager',7839,'1995-10-31',2975.00,null,20);
+Query OK, 1 row affected (0.26 sec)
+
+mysql> insert into emp values(7654,'martin','salesman',7689,'1998-12-08',1250.00,1400.00,30);
+Query OK, 1 row affected (0.36 sec)
+
+mysql> insert into emp values(7698,'blake','manager',7839,'1992-06-11',2850.00,null,30);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into emp values(7782,'clark','manager',7839,'1993-05-14',2450.00,null,10);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into emp values(7788,'scott','analyst',7566,'1996-03-05',3000.00,null,20);
+Query OK, 1 row affected (0.21 sec)
+
+mysql> insert into emp values(7839,'king','president',7566,'1990-06-09',5000.00,0.00,10);
+Query OK, 1 row affected (0.16 sec)
+
+mysql> insert into emp values(7844,'turner','salesman',7698,'1995-06-04',1500.00,0.00,30);
+Query OK, 1 row affected (0.20 sec)
+
+mysql> insert into emp values(7876,'adams','clerk',7788,'1999-06-04',1100.00,null,20);
+Query OK, 1 row affected (0.23 sec)
+
+mysql> insert into emp values(7900,'james','clerk',7698,'2000-06-23',950.00,null,30);
+Query OK, 1 row affected (0.16 sec)
+
+mysql> insert into emp values(7934,'Miller','analyst',7566,'2000-01-21',1300.00,null,10);
+Query OK, 1 row affected (0.20 sec)
+
+mysql> select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7000 | jhon   | manager   | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7002 | sham   | manager   | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7004 | ravi   | clerk     | 7693 | 2000-12-12 |  500.00 |    NULL |     50 |
+|  7499 | allen  | salesman  | 7698 | 1998-06-15 | 1600.00 |  300.00 |     30 |
+|  7521 | ward   | salesman  | 7698 | 1996-03-26 | 1250.00 |  500.00 |     30 |
+|  7566 | jones  | manager   | 7839 | 1995-10-31 | 2975.00 |    NULL |     20 |
+|  7654 | martin | salesman  | 7689 | 1998-12-08 | 1250.00 | 1400.00 |     30 |
+|  7698 | blake  | manager   | 7839 | 1992-06-11 | 2850.00 |    NULL |     30 |
+|  7782 | clark  | manager   | 7839 | 1993-05-14 | 2450.00 |    NULL |     10 |
+|  7788 | scott  | analyst   | 7566 | 1996-03-05 | 3000.00 |    NULL |     20 |
+|  7839 | king   | president | 7566 | 1990-06-09 | 5000.00 |    0.00 |     10 |
+|  7844 | turner | salesman  | 7698 | 1995-06-04 | 1500.00 |    0.00 |     30 |
+|  7876 | adams  | clerk     | 7788 | 1999-06-04 | 1100.00 |    NULL |     20 |
+|  7900 | james  | clerk     | 7698 | 2000-06-23 |  950.00 |    NULL |     30 |
+|  7934 | Miller | analyst   | 7566 | 2000-01-21 | 1300.00 |    NULL |     10 |
+|  7968 | smith  | clerk     | 7902 | 1993-12-13 |  800.00 |    0.00 |     20 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+16 rows in set (0.00 sec)
+
+mysql> insert into dept(deptno,dname,location) values(10,'accounting', 'new york');
+Query OK, 1 row affected (0.37 sec)
+
+mysql> insert into dept values(20,'Research', 'dallas');
+Query OK, 1 row affected (0.24 sec)
+
+mysql> insert into dept values(30,'sales', 'chicago');
+Query OK, 1 row affected (0.18 sec)
+
+mysql> insert into dept values(40,'operations', 'boston');
+Query OK, 1 row affected (0.24 sec)
+
+mysql> insert into dept values(50,'production', 'india');
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into dept values(60,'marketing', 'bangalore');
+Query OK, 1 row affected (0.25 sec)
+
+mysql> insert into dept values(70,'finance', 'mumbai');
+Query OK, 1 row affected (0.20 sec)
+
+mysql> select * from dept;
++--------+------------+-----------+
+| deptno | dname      | location  |
++--------+------------+-----------+
+|     10 | accounting | new york  |
+|     20 | Research   | dallas    |
+|     30 | sales      | chicago   |
+|     40 | operations | boston    |
+|     50 | production | india     |
+|     60 | marketing  | bangalore |
+|     70 | finance    | mumbai    |
++--------+------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> select empno,ename,sal from emp;
++-------+--------+---------+
+| empno | ename  | sal     |
++-------+--------+---------+
+|  7000 | jhon   | 2500.00 |
+|  7002 | sham   | 2500.00 |
+|  7004 | ravi   |  500.00 |
+|  7499 | allen  | 1600.00 |
+|  7521 | ward   | 1250.00 |
+|  7566 | jones  | 2975.00 |
+|  7654 | martin | 1250.00 |
+|  7698 | blake  | 2850.00 |
+|  7782 | clark  | 2450.00 |
+|  7788 | scott  | 3000.00 |
+|  7839 | king   | 5000.00 |
+|  7844 | turner | 1500.00 |
+|  7876 | adams  | 1100.00 |
+|  7900 | james  |  950.00 |
+|  7934 | Miller | 1300.00 |
+|  7968 | smith  |  800.00 |
++-------+--------+---------+
+16 rows in set (0.13 sec)
+
+mysql> select empno,ename,sal from emp where sal>1000;
++-------+--------+---------+
+| empno | ename  | sal     |
++-------+--------+---------+
+|  7000 | jhon   | 2500.00 |
+|  7002 | sham   | 2500.00 |
+|  7499 | allen  | 1600.00 |
+|  7521 | ward   | 1250.00 |
+|  7566 | jones  | 2975.00 |
+|  7654 | martin | 1250.00 |
+|  7698 | blake  | 2850.00 |
+|  7782 | clark  | 2450.00 |
+|  7788 | scott  | 3000.00 |
+|  7839 | king   | 5000.00 |
+|  7844 | turner | 1500.00 |
+|  7876 | adams  | 1100.00 |
+|  7934 | Miller | 1300.00 |
++-------+--------+---------+
+13 rows in set (0.11 sec)
+
+mysql> select empno,ename,sal from emp where job='manager';
++-------+-------+---------+
+| empno | ename | sal     |
++-------+-------+---------+
+|  7000 | jhon  | 2500.00 |
+|  7002 | sham  | 2500.00 |
+|  7566 | jones | 2975.00 |
+|  7698 | blake | 2850.00 |
+|  7782 | clark | 2450.00 |
++-------+-------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from emp where job='manager';
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7000 | jhon  | manager | 7698 | 2020-06-18 | 2500.00 | NULL |     50 |
+|  7002 | sham  | manager | 7698 | 2020-06-18 | 2500.00 | NULL |     50 |
+|  7566 | jones | manager | 7839 | 1995-10-31 | 2975.00 | NULL |     20 |
+|  7698 | blake | manager | 7839 | 1992-06-11 | 2850.00 | NULL |     30 |
+|  7782 | clark | manager | 7839 | 1993-05-14 | 2450.00 | NULL |     10 |
++-------+-------+---------+------+------------+---------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from emp where sal=3000;
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7788 | scott | analyst | 7566 | 1996-03-05 | 3000.00 | NULL |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp where deptno in(10,20);
++-------+--------+-----------+------+------------+---------+------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm | deptno |
++-------+--------+-----------+------+------------+---------+------+--------+
+|  7566 | jones  | manager   | 7839 | 1995-10-31 | 2975.00 | NULL |     20 |
+|  7782 | clark  | manager   | 7839 | 1993-05-14 | 2450.00 | NULL |     10 |
+|  7788 | scott  | analyst   | 7566 | 1996-03-05 | 3000.00 | NULL |     20 |
+|  7839 | king   | president | 7566 | 1990-06-09 | 5000.00 | 0.00 |     10 |
+|  7876 | adams  | clerk     | 7788 | 1999-06-04 | 1100.00 | NULL |     20 |
+|  7934 | Miller | analyst   | 7566 | 2000-01-21 | 1300.00 | NULL |     10 |
+|  7968 | smith  | clerk     | 7902 | 1993-12-13 |  800.00 | 0.00 |     20 |
++-------+--------+-----------+------+------------+---------+------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select * from emp where job in('manager','salesman','clerk');
++-------+--------+----------+------+------------+---------+---------+--------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+----------+------+------------+---------+---------+--------+
+|  7000 | jhon   | manager  | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7002 | sham   | manager  | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7004 | ravi   | clerk    | 7693 | 2000-12-12 |  500.00 |    NULL |     50 |
+|  7499 | allen  | salesman | 7698 | 1998-06-15 | 1600.00 |  300.00 |     30 |
+|  7521 | ward   | salesman | 7698 | 1996-03-26 | 1250.00 |  500.00 |     30 |
+|  7566 | jones  | manager  | 7839 | 1995-10-31 | 2975.00 |    NULL |     20 |
+|  7654 | martin | salesman | 7689 | 1998-12-08 | 1250.00 | 1400.00 |     30 |
+|  7698 | blake  | manager  | 7839 | 1992-06-11 | 2850.00 |    NULL |     30 |
+|  7782 | clark  | manager  | 7839 | 1993-05-14 | 2450.00 |    NULL |     10 |
+|  7844 | turner | salesman | 7698 | 1995-06-04 | 1500.00 |    0.00 |     30 |
+|  7876 | adams  | clerk    | 7788 | 1999-06-04 | 1100.00 |    NULL |     20 |
+|  7900 | james  | clerk    | 7698 | 2000-06-23 |  950.00 |    NULL |     30 |
+|  7968 | smith  | clerk    | 7902 | 1993-12-13 |  800.00 |    0.00 |     20 |
++-------+--------+----------+------+------------+---------+---------+--------+
+13 rows in set (0.00 sec)
+
+mysql> select deptno,dname from dept;
++--------+------------+
+| deptno | dname      |
++--------+------------+
+|     10 | accounting |
+|     20 | Research   |
+|     30 | sales      |
+|     40 | operations |
+|     50 | production |
+|     60 | marketing  |
+|     70 | finance    |
++--------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from dept where dname='sales';
++--------+-------+----------+
+| deptno | dname | location |
++--------+-------+----------+
+|     30 | sales | chicago  |
++--------+-------+----------+
+1 row in set (0.00 sec)
+
+mysql> select * from dept where location in ('india','bangalore','mumbai');
++--------+------------+-----------+
+| deptno | dname      | location  |
++--------+------------+-----------+
+|     50 | production | india     |
+|     60 | marketing  | bangalore |
+|     70 | finance    | mumbai    |
++--------+------------+-----------+
+3 rows in set (0.00 sec)
