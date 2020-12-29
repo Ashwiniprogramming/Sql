@@ -1,0 +1,419 @@
+mysql> select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7000 | jhon   | manager   | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7002 | sham   | manager   | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7004 | ravi   | clerk     | 7693 | 2000-12-12 |  500.00 |    NULL |     50 |
+|  7499 | allen  | salesman  | 7698 | 1998-06-15 | 1600.00 |  300.00 |     30 |
+|  7521 | ward   | salesman  | 7698 | 1996-03-26 | 1250.00 |  500.00 |     30 |
+|  7566 | jones  | manager   | 7839 | 1995-10-31 | 2975.00 |    NULL |     20 |
+|  7654 | martin | salesman  | 7689 | 1998-12-08 | 1250.00 | 1400.00 |     30 |
+|  7698 | blake  | manager   | 7839 | 1992-06-11 | 2850.00 |    NULL |     30 |
+|  7782 | clark  | manager   | 7839 | 1993-05-14 | 2450.00 |    NULL |     10 |
+|  7788 | scott  | analyst   | 7566 | 1996-03-05 | 3000.00 |    NULL |     20 |
+|  7839 | king   | president | 7566 | 1990-06-09 | 5000.00 |    0.00 |     10 |
+|  7844 | turner | salesman  | 7698 | 1995-06-04 | 1500.00 |    0.00 |     30 |
+|  7876 | adams  | clerk     | 7788 | 1999-06-04 | 1100.00 |    NULL |     20 |
+|  7900 | james  | clerk     | 7698 | 2000-06-23 |  950.00 |    NULL |     30 |
+|  7934 | Miller | analyst   | 7566 | 2000-01-21 | 1300.00 |    NULL |     10 |
+|  7968 | smith  | clerk     | 7902 | 1993-12-13 |  800.00 |    0.00 |     20 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select *distinct ename
+    -> from emp
+    -> where ename like 's%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'distinct ename
+from emp
+where ename like 's%'' at line 1
+mysql> select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7000 | jhon   | manager   | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7002 | sham   | manager   | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7004 | ravi   | clerk     | 7693 | 2000-12-12 |  500.00 |    NULL |     50 |
+|  7499 | allen  | salesman  | 7698 | 1998-06-15 | 1600.00 |  300.00 |     30 |
+|  7521 | ward   | salesman  | 7698 | 1996-03-26 | 1250.00 |  500.00 |     30 |
+|  7566 | jones  | manager   | 7839 | 1995-10-31 | 2975.00 |    NULL |     20 |
+|  7654 | martin | salesman  | 7689 | 1998-12-08 | 1250.00 | 1400.00 |     30 |
+|  7698 | blake  | manager   | 7839 | 1992-06-11 | 2850.00 |    NULL |     30 |
+|  7782 | clark  | manager   | 7839 | 1993-05-14 | 2450.00 |    NULL |     10 |
+|  7788 | scott  | analyst   | 7566 | 1996-03-05 | 3000.00 |    NULL |     20 |
+|  7839 | king   | president | 7566 | 1990-06-09 | 5000.00 |    0.00 |     10 |
+|  7844 | turner | salesman  | 7698 | 1995-06-04 | 1500.00 |    0.00 |     30 |
+|  7876 | adams  | clerk     | 7788 | 1999-06-04 | 1100.00 |    NULL |     20 |
+|  7900 | james  | clerk     | 7698 | 2000-06-23 |  950.00 |    NULL |     30 |
+|  7934 | Miller | analyst   | 7566 | 2000-01-21 | 1300.00 |    NULL |     10 |
+|  7968 | smith  | clerk     | 7902 | 1993-12-13 |  800.00 |    0.00 |     20 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select distinct ename
+    -> from emp
+    -> where ename like 's%';
++-------+
+| ename |
++-------+
+| sham  |
+| scott |
+| smith |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from emp where ename like 's%';
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7002 | sham  | manager | 7698 | 2020-06-18 | 2500.00 | NULL |     50 |
+|  7788 | scott | analyst | 7566 | 1996-03-05 | 3000.00 | NULL |     20 |
+|  7968 | smith | clerk   | 7902 | 1993-12-13 |  800.00 | 0.00 |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select distinct ename
+    -> from emp
+    -> where ename like '_l%';
++-------+
+| ename |
++-------+
+| allen |
+| blake |
+| clark |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> select distinct ename
+    -> from emp
+    -> where ename like ' %e';
+Empty set (0.00 sec)
+
+mysql> select distinct ename
+    -> from emp
+    -> where ename like '%e';
++-------+
+| ename |
++-------+
+| blake |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select distinct ename
+    -> from emp
+    -> where ename like '____';
++-------+
+| ename |
++-------+
+| jhon  |
+| sham  |
+| ravi  |
+| ward  |
+| king  |
++-------+
+5 rows in set (0.00 sec)
+
+mysql> select distinct ename
+    -> from emp
+    -> where ename like '%l%;
+    '> '
+    -> ;
+Empty set (0.00 sec)
+
+mysql> select distinct ename
+    -> from emp
+    -> where ename like '%l%';
++--------+
+| ename  |
++--------+
+| allen  |
+| blake  |
+| clark  |
+| Miller |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> select distinct ename
+    -> from emp
+    -> where ename like '_____%';
++--------+
+| ename  |
++--------+
+| allen  |
+| jones  |
+| martin |
+| blake  |
+| clark  |
+| scott  |
+| turner |
+| adams  |
+| james  |
+| Miller |
+| smith  |
++--------+
+11 rows in set (0.00 sec)
+
+mysql> select distinct ename
+    -> from emp
+    -> where job between ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> select distinct sal
+    -> from emp
+    -> where sal between 2000 and 3000;
++---------+
+| sal     |
++---------+
+| 2500.00 |
+| 2975.00 |
+| 2850.00 |
+| 2450.00 |
+| 3000.00 |
++---------+
+5 rows in set (0.02 sec)
+
+mysql> select distinct job,commision
+    -> from emp
+    -> where job not in('manager') and commision in('null');
+ERROR 1054 (42S22): Unknown column 'commision' in 'field list'
+mysql> select distinct job,comm
+    -> from emp
+    -> where job not in('manager') and comm in ('null');
++-----------+------+
+| job       | comm |
++-----------+------+
+| president | 0.00 |
+| salesman  | 0.00 |
+| clerk     | 0.00 |
++-----------+------+
+3 rows in set, 1 warning (0.05 sec)
+
+mysql> select distinct job,comm
+    -> from emp
+    -> where job not in('manager') and comm is null;
++---------+------+
+| job     | comm |
++---------+------+
+| clerk   | NULL |
+| analyst | NULL |
++---------+------+
+2 rows in set (0.06 sec)
+
+mysql> select * from emp where job not in ('manager') and comm is null;
++-------+--------+---------+------+------------+---------+------+--------+
+| empno | ename  | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+--------+---------+------+------------+---------+------+--------+
+|  7004 | ravi   | clerk   | 7693 | 2000-12-12 |  500.00 | NULL |     50 |
+|  7788 | scott  | analyst | 7566 | 1996-03-05 | 3000.00 | NULL |     20 |
+|  7876 | adams  | clerk   | 7788 | 1999-06-04 | 1100.00 | NULL |     20 |
+|  7900 | james  | clerk   | 7698 | 2000-06-23 |  950.00 | NULL |     30 |
+|  7934 | Miller | analyst | 7566 | 2000-01-21 | 1300.00 | NULL |     10 |
++-------+--------+---------+------+------------+---------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select distinct job,comm
+    -> from emp
+    -> where job not in('manager') or comm is null;
++-----------+---------+
+| job       | comm    |
++-----------+---------+
+| manager   |    NULL |
+| clerk     |    NULL |
+| salesman  |  300.00 |
+| salesman  |  500.00 |
+| salesman  | 1400.00 |
+| analyst   |    NULL |
+| president |    0.00 |
+| salesman  |    0.00 |
+| clerk     |    0.00 |
++-----------+---------+
+9 rows in set (0.00 sec)
+
+mysql> select * from emp where job not in ('manager') or comm is null;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7000 | jhon   | manager   | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7002 | sham   | manager   | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7004 | ravi   | clerk     | 7693 | 2000-12-12 |  500.00 |    NULL |     50 |
+|  7499 | allen  | salesman  | 7698 | 1998-06-15 | 1600.00 |  300.00 |     30 |
+|  7521 | ward   | salesman  | 7698 | 1996-03-26 | 1250.00 |  500.00 |     30 |
+|  7566 | jones  | manager   | 7839 | 1995-10-31 | 2975.00 |    NULL |     20 |
+|  7654 | martin | salesman  | 7689 | 1998-12-08 | 1250.00 | 1400.00 |     30 |
+|  7698 | blake  | manager   | 7839 | 1992-06-11 | 2850.00 |    NULL |     30 |
+|  7782 | clark  | manager   | 7839 | 1993-05-14 | 2450.00 |    NULL |     10 |
+|  7788 | scott  | analyst   | 7566 | 1996-03-05 | 3000.00 |    NULL |     20 |
+|  7839 | king   | president | 7566 | 1990-06-09 | 5000.00 |    0.00 |     10 |
+|  7844 | turner | salesman  | 7698 | 1995-06-04 | 1500.00 |    0.00 |     30 |
+|  7876 | adams  | clerk     | 7788 | 1999-06-04 | 1100.00 |    NULL |     20 |
+|  7900 | james  | clerk     | 7698 | 2000-06-23 |  950.00 |    NULL |     30 |
+|  7934 | Miller | analyst   | 7566 | 2000-01-21 | 1300.00 |    NULL |     10 |
+|  7968 | smith  | clerk     | 7902 | 1993-12-13 |  800.00 |    0.00 |     20 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select distinct job
+    -> from emp
+    -> where job in ('manager');
++---------+
+| job     |
++---------+
+| manager |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp where job  in ('manager');
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7000 | jhon  | manager | 7698 | 2020-06-18 | 2500.00 | NULL |     50 |
+|  7002 | sham  | manager | 7698 | 2020-06-18 | 2500.00 | NULL |     50 |
+|  7566 | jones | manager | 7839 | 1995-10-31 | 2975.00 | NULL |     20 |
+|  7698 | blake | manager | 7839 | 1992-06-11 | 2850.00 | NULL |     30 |
+|  7782 | clark | manager | 7839 | 1993-05-14 | 2450.00 | NULL |     10 |
++-------+-------+---------+------+------------+---------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select distinct job
+    -> from emp
+    -> where job like 'm%';
++---------+
+| job     |
++---------+
+| manager |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select distinct job,deptno
+    -> from emp
+    -> where job in ('manager') and deptno in (10,20);
++---------+--------+
+| job     | deptno |
++---------+--------+
+| manager |     20 |
+| manager |     10 |
++---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from emp where job  in ('manager') and deptno in (10,20);
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7566 | jones | manager | 7839 | 1995-10-31 | 2975.00 | NULL |     20 |
+|  7782 | clark | manager | 7839 | 1993-05-14 | 2450.00 | NULL |     10 |
++-------+-------+---------+------+------------+---------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select distinct job,sal,deptno
+    -> from emp
+    -> where job in ('clerk' and 'analyst') and sal>=1000 and deptno in (20,30);
++----------+---------+--------+
+| job      | sal     | deptno |
++----------+---------+--------+
+| salesman | 1600.00 |     30 |
+| salesman | 1250.00 |     30 |
+| manager  | 2975.00 |     20 |
+| manager  | 2850.00 |     30 |
+| analyst  | 3000.00 |     20 |
+| salesman | 1500.00 |     30 |
+| clerk    | 1100.00 |     20 |
++----------+---------+--------+
+7 rows in set, 17 warnings (0.06 sec)
+
+mysql> select distinct job,sal,deptno
+    -> from emp
+    -> where job in ('clerk', 'analyst') and sal>=1000 and deptno in (20,30);
++---------+---------+--------+
+| job     | sal     | deptno |
++---------+---------+--------+
+| analyst | 3000.00 |     20 |
+| clerk   | 1100.00 |     20 |
++---------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from emp where job  in ('clerk','analyst') and sal>=1000 and deptno in (20,30);
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7788 | scott | analyst | 7566 | 1996-03-05 | 3000.00 | NULL |     20 |
+|  7876 | adams | clerk   | 7788 | 1999-06-04 | 1100.00 | NULL |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select distinct ename,deptno
+    -> from emp
+    -> where ename like 'a%' or 's%' and deptno in (20);
++-------+--------+
+| ename | deptno |
++-------+--------+
+| allen |     30 |
+| adams |     20 |
++-------+--------+
+2 rows in set, 1 warning (0.03 sec)
+
+mysql> select distinct ename,deptno
+    -> from emp
+    -> where ename like 'a%' or ename like 's%' and deptno in (20);
++-------+--------+
+| ename | deptno |
++-------+--------+
+| allen |     30 |
+| scott |     20 |
+| adams |     20 |
+| smith |     20 |
++-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select distinct ename,deptno
+    -> from emp
+    -> where ename not  like '%s' and deptno in (20,30);
++--------+--------+
+| ename  | deptno |
++--------+--------+
+| allen  |     30 |
+| ward   |     30 |
+| martin |     30 |
+| blake  |     30 |
+| scott  |     20 |
+| turner |     30 |
+| smith  |     20 |
++--------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select distinct comm,sal,deptno
+    -> from emp
+    -> where comm not in (null,0.00) and sal >1500 and deptno in (30);
+Empty set (0.00 sec)
+
+mysql> select distinct comm,sal,deptno
+    -> from emp
+    -> where comm is not (null,0.00) and sal >1500 and deptno in (30);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(null,0.00) and sal >1500 and deptno in (30)' at line 3
+mysql> select distinct comm,sal,deptno
+    -> from emp
+    -> where comm not is  (null,0.00) and sal >1500 and deptno in (30);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'is  (null,0.00) and sal >1500 and deptno in (30)' at line 3
+mysql> select distinct comm,sal,deptno
+    -> from emp
+    -> where comm is not (null,0.00) and sal >1500 and deptno in (30);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(null,0.00) and sal >1500 and deptno in (30)' at line 3
+mysql> select * from emp where  sal>1500 and deptno in (30);
++-------+-------+----------+------+------------+---------+--------+--------+
+| empno | ename | job      | mgr  | hiredate   | sal     | comm   | deptno |
++-------+-------+----------+------+------------+---------+--------+--------+
+|  7499 | allen | salesman | 7698 | 1998-06-15 | 1600.00 | 300.00 |     30 |
+|  7698 | blake | manager  | 7839 | 1992-06-11 | 2850.00 |   NULL |     30 |
++-------+-------+----------+------+------------+---------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select distinct job,sal,deptno
+    -> from emp
+    -> where  job in ('manager','clerk') and sal>=2000 and deptno not in (10,20);
++---------+---------+--------+
+| job     | sal     | deptno |
++---------+---------+--------+
+| manager | 2500.00 |     50 |
+| manager | 2850.00 |     30 |
++---------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql>
